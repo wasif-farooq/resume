@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Model, Types } from "mongoose";
+import {DocumentQuery, Model, Types} from "mongoose";
 import { Profile } from "../schemas/profile.schema";
 import { InjectModel } from "@nestjs/mongoose";
 import {CreateProfileDto} from "../dto/create.profile.dto";
 import {AlreadyExistsException} from "../../../shared/exceptions/already.exists.exception";
 import {UpdateProfileDto} from "../dto/update.profile.dto";
-import {Type} from "class-transformer";
 
 @Injectable()
 export class ProfileService {
@@ -28,13 +27,10 @@ export class ProfileService {
         return profile.save()
     }
 
-    async update(id: string, data: UpdateProfileDto, owner: string): Promise<Profile> {
-        console.log(id, data, owner)
+    async update(id: string, data: UpdateProfileDto, owner: string): Promise<DocumentQuery<Profile | null, Profile, {}> & {}> {
         return this.model.findOneAndUpdate({
             _id: Types.ObjectId(id),
             owner: Types.ObjectId(owner)
-        }, {
-            $set: data
-        })
+        }, data)
     }
 }

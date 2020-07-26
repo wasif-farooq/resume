@@ -36,6 +36,12 @@ export class Profile extends Document {
 
     @Prop({ type: Types.ObjectId, ref: 'User', required: true  })
     owner: Types.ObjectId
+
+    @Prop({ default: false })
+    deleted: boolean
+
+    @Prop({ default: true })
+    active: boolean
 }
 
 export const ProfileSchema = SchemaFactory.createForClass(Profile)
