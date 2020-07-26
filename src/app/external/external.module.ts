@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ExternalController } from './external.controller';
-import { ExternalService } from './external.service';
+import { ExternalController } from './controllers/external.controller';
+import { ExternalService } from './services/external.service';
 
 @Module({
   controllers: [ExternalController],
