@@ -1,7 +1,7 @@
 import {Body, Controller, Get, UseGuards, Request, Post, Param, Put, Delete} from '@nestjs/common';
 import {SkillService} from "../services/skill.service";
 import {JwtAuthGuard} from "../../auth/guard/jwt-auth.guard";
-import {SkillDto} from "../dto/skill.dto";
+import {CreateSkillDto, UpdateSkillDto} from "../dto";
 
 @Controller('skills')
 export class SkillController {
@@ -28,7 +28,7 @@ export class SkillController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async create(
-        @Body() data: SkillDto,
+        @Body() data: CreateSkillDto,
         @Request() req: any
     ) {
         return this.skillService.create(data, req.user.userId)
@@ -38,7 +38,7 @@ export class SkillController {
     @Put(':id')
     async update(
         @Param() params: any,
-        @Body() data: SkillDto
+        @Body() data: UpdateSkillDto
     ) {
         return this.skillService.update(params.id, data)
     }
