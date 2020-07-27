@@ -50,4 +50,8 @@ export class UpdateEducation {
     @IsNotEmpty()
     order: number
 
+    @ApiPropertyOptional({ type: String })
+    @IsString()
+    degree: string
+
 }

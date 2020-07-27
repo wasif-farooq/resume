@@ -46,4 +46,8 @@ export class CreateEducation {
     @IsNotEmpty()
     order: number
 
+    @ApiPropertyOptional({ type: String })
+    @IsString()
+    degree: string
+
 }
