@@ -4,9 +4,10 @@ import {
     ValidateIf,
     IsBoolean,
     IsNumber,
-    Type
+    IsDateString
 } from "class-validator";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import {Type} from "class-transformer";
 
 export class UpdateEducation {
 
@@ -29,13 +30,13 @@ export class UpdateEducation {
 
     @ApiProperty({ type: Date })
     @ValidateIf(o => o.hasOwnProperty('address'))
-    @Type(() => Date)
+    @IsDateString()
     @IsNotEmpty()
     started: Date
 
     @ApiProperty({ type: Date })
     @ValidateIf(o => o.isEnded === true && o.hasOwnProperty('ended'))
-    @Type(() => Date)
+    @IsDateString()
     @IsNotEmpty()
     ended: Date
 
@@ -52,6 +53,6 @@ export class UpdateEducation {
 
     @ApiPropertyOptional({ type: String })
     @IsString()
-    degree: string
+    description: string
 
 }

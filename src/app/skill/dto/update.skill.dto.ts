@@ -19,5 +19,5 @@ export class UpdateSkillDto {
     @ValidateIf(o => o.hasOwnProperty('order'))
     @IsNumber()
     @IsNotEmpty()
-    order: number
+    description: number
 }
